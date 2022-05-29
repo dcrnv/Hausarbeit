@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BaufirmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arbeitsplan">
+          <Key>
+            <PropertyRef Name="ID_Arbeitsplan" />
+          </Key>
+          <Property Name="ID_Arbeitsplan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Baustelle" Type="nvarchar" MaxLength="100" />
+          <Property Name="Datum" Type="date" />
+          <Property Name="ID_Material" Type="int" />
+          <Property Name="ID_Mitarbeiter" Type="int" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="ID_Material" />
+          </Key>
+          <Property Name="ID_Material" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Anzahl" Type="int" />
+          <Property Name="Listenpreis" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Hersteller" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gewicht_in_KG" Type="int" />
+        </EntityType>
+        <EntityType Name="Mitarbeiter">
+          <Key>
+            <PropertyRef Name="ID_Mitarbeiter" />
+          </Key>
+          <Property Name="ID_Mitarbeiter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Vorname" Type="nvarchar" MaxLength="20" />
+          <Property Name="Straße" Type="nvarchar" MaxLength="50" />
+          <Property Name="Hausnummer" Type="int" />
+          <Property Name="Postleitzahl" Type="int" />
+          <Property Name="Telefonnummer" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Geburtstag" Type="date" />
+          <Property Name="Ort" Type="nvarchar" MaxLength="30" />
+          <Property Name="Rolle" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK_ID_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="Arbeitsplan" Type="Self.Arbeitsplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID_Material" />
+            </Principal>
+            <Dependent Role="Arbeitsplan">
+              <PropertyRef Name="ID_Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_Mitarbeiter">
+          <End Role="Mitarbeiter" Type="Self.Mitarbeiter" Multiplicity="0..1" />
+          <End Role="Arbeitsplan" Type="Self.Arbeitsplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitarbeiter">
+              <PropertyRef Name="ID_Mitarbeiter" />
+            </Principal>
+            <Dependent Role="Arbeitsplan">
+              <PropertyRef Name="ID_Mitarbeiter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaufirmaModelStoreContainer">
+          <EntitySet Name="Arbeitsplan" EntityType="Self.Arbeitsplan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mitarbeiter" EntityType="Self.Mitarbeiter" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ID_Material" Association="Self.FK_ID_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Arbeitsplan" EntitySet="Arbeitsplan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_Mitarbeiter" Association="Self.FK_ID_Mitarbeiter">
+            <End Role="Mitarbeiter" EntitySet="Mitarbeiter" />
+            <End Role="Arbeitsplan" EntitySet="Arbeitsplan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaufirmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Arbeitsplan">
+          <Key>
+            <PropertyRef Name="ID_Arbeitsplan" />
+          </Key>
+          <Property Name="ID_Arbeitsplan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baustelle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Datum" Type="DateTime" Precision="0" />
+          <Property Name="ID_Material" Type="Int32" />
+          <Property Name="ID_Mitarbeiter" Type="Int32" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_ID_Material" FromRole="Arbeitsplan" ToRole="Material" />
+          <NavigationProperty Name="Mitarbeiter" Relationship="Self.FK_ID_Mitarbeiter" FromRole="Arbeitsplan" ToRole="Mitarbeiter" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="ID_Material" />
+          </Key>
+          <Property Name="ID_Material" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Anzahl" Type="Int32" />
+          <Property Name="Listenpreis" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Hersteller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gewicht_in_KG" Type="Int32" />
+          <NavigationProperty Name="Arbeitsplan" Relationship="Self.FK_ID_Material" FromRole="Material" ToRole="Arbeitsplan" />
+        </EntityType>
+        <EntityType Name="Mitarbeiter">
+          <Key>
+            <PropertyRef Name="ID_Mitarbeiter" />
+          </Key>
+          <Property Name="ID_Mitarbeiter" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Vorname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Straße" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hausnummer" Type="Int32" />
+          <Property Name="Postleitzahl" Type="Int32" />
+          <Property Name="Telefonnummer" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Geburtstag" Type="DateTime" Precision="0" />
+          <Property Name="Ort" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Rolle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Arbeitsplan" Relationship="Self.FK_ID_Mitarbeiter" FromRole="Mitarbeiter" ToRole="Arbeitsplan" />
+        </EntityType>
+        <Association Name="FK_ID_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="Arbeitsplan" Type="Self.Arbeitsplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID_Material" />
+            </Principal>
+            <Dependent Role="Arbeitsplan">
+              <PropertyRef Name="ID_Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_Mitarbeiter">
+          <End Role="Mitarbeiter" Type="Self.Mitarbeiter" Multiplicity="0..1" />
+          <End Role="Arbeitsplan" Type="Self.Arbeitsplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitarbeiter">
+              <PropertyRef Name="ID_Mitarbeiter" />
+            </Principal>
+            <Dependent Role="Arbeitsplan">
+              <PropertyRef Name="ID_Mitarbeiter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaufirmaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arbeitsplan" EntityType="Self.Arbeitsplan" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Mitarbeiter" EntityType="Self.Mitarbeiter" />
+          <AssociationSet Name="FK_ID_Material" Association="Self.FK_ID_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Arbeitsplan" EntitySet="Arbeitsplan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_Mitarbeiter" Association="Self.FK_ID_Mitarbeiter">
+            <End Role="Mitarbeiter" EntitySet="Mitarbeiter" />
+            <End Role="Arbeitsplan" EntitySet="Arbeitsplan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BaufirmaModelStoreContainer" CdmEntityContainer="BaufirmaEntities">
+          <EntitySetMapping Name="Arbeitsplan">
+            <EntityTypeMapping TypeName="BaufirmaModel.Arbeitsplan">
+              <MappingFragment StoreEntitySet="Arbeitsplan">
+                <ScalarProperty Name="ID_Arbeitsplan" ColumnName="ID_Arbeitsplan" />
+                <ScalarProperty Name="Baustelle" ColumnName="Baustelle" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="ID_Material" ColumnName="ID_Material" />
+                <ScalarProperty Name="ID_Mitarbeiter" ColumnName="ID_Mitarbeiter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="BaufirmaModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="ID_Material" ColumnName="ID_Material" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Anzahl" ColumnName="Anzahl" />
+                <ScalarProperty Name="Listenpreis" ColumnName="Listenpreis" />
+                <ScalarProperty Name="Hersteller" ColumnName="Hersteller" />
+                <ScalarProperty Name="Gewicht_in_KG" ColumnName="Gewicht_in_KG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mitarbeiter">
+            <EntityTypeMapping TypeName="BaufirmaModel.Mitarbeiter">
+              <MappingFragment StoreEntitySet="Mitarbeiter">
+                <ScalarProperty Name="ID_Mitarbeiter" ColumnName="ID_Mitarbeiter" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+                <ScalarProperty Name="Straße" ColumnName="Straße" />
+                <ScalarProperty Name="Hausnummer" ColumnName="Hausnummer" />
+                <ScalarProperty Name="Postleitzahl" ColumnName="Postleitzahl" />
+                <ScalarProperty Name="Telefonnummer" ColumnName="Telefonnummer" />
+                <ScalarProperty Name="Geburtstag" ColumnName="Geburtstag" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="Rolle" ColumnName="Rolle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

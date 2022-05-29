@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="DSH.MVVM.View.MaterialVerwaltenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DSH.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="namehzf"
+                    Grid.Column="1" 
+                         Margin="5"
+                         Background="Transparent"
+                         Foreground="White"
+                         PreviewTextInput="namehzf_PreviewTextInput"
+                         >
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="CharacterCasing" Value="Lower"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="0">
+                                    <Setter Property="CharacterCasing" Value="Upper"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <Label Content="Anzahl" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="anzahlhzf"
+                    Grid.Column="1" Grid.Row="1"
+                         PreviewTextInput="anzahlhzf_PreviewTextInput"
+                         PreviewKeyDown="anzahlhzf_PreviewKeyDown"
+                         Background="Transparent"
+                         Foreground="White"
+                Margin="5"/>
+
+
+                <Label Content="Listenpreis" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="listenpreishzf"
+                         Grid.Row="2" Grid.Column="1"
+                         PreviewTextInput="listenpreishzf_PreviewTextInput"
+                         PreviewKeyDown="listenpreishzf_PreviewKeyDown"
+                         Background="Transparent"
+                         Foreground="White"
+                         Margin="5"/>
+
+
+                <Label Content="Hersteller" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="herstellerhzf" 
+                         Grid.Row="3" Grid.Column="1"
+                         PreviewTextInput="herstellerhzf_PreviewTextInput"
+                         Margin="5"
+                         Background="Transparent"
+                         Foreground="White">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="CharacterCasing" Value="Lower"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="0">
+                                    <Setter Property="CharacterCasing" Value="Upper"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+
+                <Label Content="Gewicht in KG" Grid.Row="4"  HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="gewichthzf"
+                         Grid.Row="4" Grid.Column="1"
+                         PreviewTextInput="gewichthzf_PreviewTextInput"
+                         PreviewKeyDown="gewichthzf_PreviewKeyDown"
+                         Background="Transparent"
+                         Foreground="White"
+                         Margin="5"/>
+
+                <Button Grid.Row="9" Content="Speichern" Margin="5" Foreground="White"
+                        Grid.ColumnSpan="2"
+                        Click="Button_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                                <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                            <Setter Property="Background" Value="#39385D"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="Auto" Height="25"
+                                        CornerRadius="12"
+                                        Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

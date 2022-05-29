@@ -1,0 +1,163 @@
+﻿<Window x:Class="DSH.Hauptseite"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DSH"
+        xmlns:viewModel="clr-namespace:DSH.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="Hauptseite" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        KeyUp="Window_KeyUp"
+        >
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    <Border Background="#181735"
+            CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="210"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Image         Source="Images/drilonshausarbeit.png"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 5"/>
+
+            <StackPanel Grid.Row="1">
+                <RadioButton x:Name="homebutton"
+                             Content="Home"
+                             Foreground="White"
+                             Height="75"
+                             FontSize="15"
+                             FontFamily="Fonts/#Raleway"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"
+                             />
+
+                <RadioButton Content="Mitarbeiter verwalten"
+                             Foreground="White"
+                             Height="75"
+                             FontSize="15"
+                             FontFamily="Fonts/#Raleway"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding MitarbeiterEinsehenCommand}"
+                             />
+
+                <RadioButton Content="Mitarbeiter hinzufügen"
+                             Foreground="White"
+                             Height="75"
+                             FontSize="15"
+                             FontFamily="Fonts/#Raleway"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding MiVerwaltenCommand}"
+                             />
+
+                <RadioButton Content="Material verwalten"
+                             Foreground="White"
+                             Height="75"
+                             FontSize="15"
+                             FontFamily="Fonts/#Raleway"
+                             Style="{StaticResource MenuButtonTheme}"
+                                                          Command="{Binding MaterialEinsehenCommand}"
+
+                             />
+
+                <RadioButton Content="Material hinzufügen"
+                             Foreground="White"
+                             Height="75"
+                             FontSize="15"
+                             FontFamily="Fonts/#Raleway"
+                             Style="{StaticResource MenuButtonTheme}"
+                                                          Command="{Binding MaterialVerwaltenCommand}"
+
+                             />
+
+                <RadioButton Content="Baustelle verwalten"
+                             Foreground="White"
+                             Height="75"
+                             FontSize="15"
+                             FontFamily="Fonts/#Raleway"
+                             Style="{StaticResource MenuButtonTheme}"
+                                                          Command="{Binding ArbeitsplanEinsehenCommand}"
+
+                             />
+
+                <RadioButton Content="Baustelle hinzufügen"
+                             Foreground="White"
+                             Height="75"
+                             FontSize="15"
+                             FontFamily="Fonts/#Raleway"
+                             Style="{StaticResource MenuButtonTheme}"
+                                                          Command="{Binding ArbeitsplanErstellenCommand}"/>
+
+
+            </StackPanel>
+
+            <TextBlock Text="Baufirma - Drilon's Hausarbeit"
+                       Foreground="White"
+                       FontSize="40"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="5"
+                       FontFamily="Fonts/#Anton"
+                       FontWeight="Bold"
+                       />
+            <Button Grid.Column="1"
+                    Content="Logout"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right" Margin="0,10,29,10" Height="55" Width="84"
+                    x:Name="logout"
+                    Click="logout_Click"
+                    >
+                
+                
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                        <Setter Property="Background" Value="#39385D"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#3A3952"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="Auto" Height="25"
+                                        CornerRadius="12"
+                                        Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
+
+        </Grid>
+
+
+    </Border>
+</Window>

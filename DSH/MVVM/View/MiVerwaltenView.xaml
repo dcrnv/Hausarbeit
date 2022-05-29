@@ -1,0 +1,217 @@
+﻿<UserControl x:Class="DSH.MVVM.View.MiVerwaltenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DSH.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900"
+             >
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="namehzf"
+                    Grid.Column="1" 
+                         Margin="5"
+                         Background="Transparent"
+                         Foreground="White"
+                         PreviewTextInput="namehzf_PreviewTextInput"
+                         PreviewKeyDown="namehzf_PreviewKeyDown">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                        <Setter Property="CharacterCasing" Value="Lower"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="0">
+                                <Setter Property="CharacterCasing" Value="Upper"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <Label Content="Vorname" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="vornamehzf"
+                    Grid.Column="1" Grid.Row="1"
+                Margin="5"
+                         Background="Transparent"
+                         Foreground="White"
+                         PreviewTextInput="vornamehzf_PreviewTextInput"
+                         PreviewKeyDown="vornamehzf_PreviewKeyDown">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="CharacterCasing" Value="Lower"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="0">
+                                    <Setter Property="CharacterCasing" Value="Upper"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+
+                <Label Content="Straße" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="straßehzf"
+                         Grid.Row="2" Grid.Column="1"
+                         Margin="5"
+                         Background="Transparent"
+                         Foreground="White"
+                         PreviewTextInput="straßehzf_PreviewTextInput">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="CharacterCasing" Value="Lower"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="0">
+                                    <Setter Property="CharacterCasing" Value="Upper"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+
+                <Label Content="Hausnummer" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="hausnummerhzf" 
+                         Grid.Row="3" Grid.Column="1"
+                         Margin="5"
+                         Background="Transparent"
+                         Foreground="White"
+                         PreviewTextInput="hausnummerhzf_PreviewTextInput"
+                         PreviewKeyDown="hausnummerhzf_PreviewKeyDown"
+                         />
+
+
+
+                <Label Content="Ort" Grid.Row="4"  HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="orthzf"
+                         Grid.Row="4" Grid.Column="1"
+                         Margin="5"
+                         PreviewTextInput="orthzf_PreviewTextInput"
+                         Background="Transparent"
+                         Foreground="White">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="CharacterCasing" Value="Lower"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="0">
+                                    <Setter Property="CharacterCasing" Value="Upper"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+
+                <Label Content="Postleitzahl" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox    x:Name="plzhzf" 
+                        Grid.Row="5" Grid.Column="1"
+                            Margin="5"
+                            PreviewTextInput="plzhzf_PreviewTextInput"
+                            PreviewKeyDown="plzhzf_PreviewKeyDown"
+                            Background="Transparent"
+                            Foreground="White"
+                            />
+
+
+                <Label Content="Telefonnummer" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <TextBox x:Name="tlfhzf" Grid.Row="6" Grid.Column="1"
+                         Margin="5"
+                         PreviewKeyDown="tlfhzf_PreviewKeyDown"
+                         PreviewTextInput="tlfhzf_PreviewTextInput"
+                         Background="Transparent"
+                         Foreground="White"
+                         />
+
+
+                <Label Content="Geburtstag" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+                <DatePicker x:Name="bdayhzf" Grid.Row="7" Grid.Column="1"
+                            DisplayDateStart="1/01/1950"
+                            DisplayDateEnd="1/01/2022"
+                            SelectedDateFormat="Long"
+                            SelectedDate="10/27/2000"
+                            SelectedDateChanged="bdayhzf_SelectedDateChanged"
+                          />
+
+
+                <Label Content="Rolle" Grid.Row="8"  HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="White"/>
+
+                <ComboBox x:Name="rollehzf"
+                          Grid.Row="8"
+                          Grid.Column="1"
+                          Margin="5"
+                          />
+
+                <!--<TextBox x:Name="rollehzf" Grid.Row="8" Grid.Column="1"
+                         Margin="5"
+                         PreviewTextInput="rollehzf_PreviewTextInput">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="CharacterCasing" Value="Lower"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="0">
+                                    <Setter Property="CharacterCasing" Value="Upper"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>-->
+
+                <Button Grid.Row="9" Content="Speichern" Margin="5"
+                        Grid.ColumnSpan="2"
+                        Click="Button_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                            <Setter Property="Background" Value="#39385D"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="Auto" Height="25"
+                                        CornerRadius="12"
+                                        Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+
+                </Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

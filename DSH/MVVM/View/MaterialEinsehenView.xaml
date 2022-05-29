@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="DSH.MVVM.View.MaterialEinsehenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DSH.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+
+            <DataGrid x:Name="material" 
+                  ItemsSource="{Binding }"
+                  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"
+                  AutoGenerateColumns="False"
+                  FontSize="15" 
+                  CanUserAddRows="False"
+                  >
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#181735"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontFamily" Value="Fonts/#Anton"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="DataGrid">
+                        <Setter Property="VerticalGridLinesBrush" Value="#181735"/>
+                        <Setter Property="HorizontalGridLinesBrush" Value="#181123"/>
+                        <Setter Property="AlternatingRowBackground" Value="#ff2c3e50"/>
+                        <Setter Property="RowBackground" Value="#181735"/>
+                        <Setter Property="FontFamily" Value="Fonts/Anton"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="RowHeight" Value="25"/>
+                        <Setter Property="RowHeaderWidth" Value="0"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="RowBackground" Value="#3A3952"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID_Material, Mode=OneWay}" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=OneWay}" />
+                    <DataGridTextColumn Header="Anzahl" Binding="{Binding Anzahl}" />
+                    <DataGridTextColumn Header="Listenpreis" Binding="{Binding Listenpreis, Mode=OneWay}" />
+                    <DataGridTextColumn Header="Hersteller" Binding="{Binding Hersteller, Mode=OneWay}" />
+                    <DataGridTextColumn Header="Gewicht in KG" Binding="{Binding Gewicht_in_KG, Mode=OneWay }" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="450*"/>
+                    <ColumnDefinition Width="97*"/>
+                    <ColumnDefinition Width="353*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Content="Löschen" 
+                            Foreground="White"
+                            FontSize="14"                            
+                            FontWeight="Medium"
+                            x:Name="MaterialLöschen"
+                            Margin="5" Click="MaterialLöschen_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                            <Setter Property="Background" Value="#39385D"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="DarkRed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="Auto" Height="25"
+                                        CornerRadius="12"
+                                        Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Content="Update" 
+                            Foreground="White"
+                            FontSize="14"                            
+                            FontWeight="Medium"
+                            Grid.Column="1"
+                            x:Name="materialupdate"
+                        Click="materialupdate_Click"
+                        Margin="5" Grid.ColumnSpan="2">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                            <Setter Property="Background" Value="#39385D"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="DarkGray"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="Auto" Height="25"
+                                        CornerRadius="12"
+                                        Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</UserControl>
